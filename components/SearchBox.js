@@ -24,7 +24,6 @@ const SearchBox = ({ currentRefinement, refine }: Props) => (
         width: ${Metrics.mobileWidth}px;
         max-width: 100%;
         min-height: 42px;
-        background-color: red;
         margin-top: ${Metrics.doublePadding * 2}px;
         margin-bottom: ${Metrics.basePadding}px;
       }
@@ -33,9 +32,15 @@ const SearchBox = ({ currentRefinement, refine }: Props) => (
         display: flex;
         flex: 1;
         font-size: 18px;
-        padding: ${Metrics.basePadding}px ${Metrics.doublePadding};
+        padding: ${Metrics.basePadding}px ${Metrics.doublePadding}px;
         border: none;
-        border-bottom: 1px solid ${Colors.border};
+        border-bottom: 2px solid ${Colors.border};
+        color: #777;
+      }
+
+      input:focus, input:active {
+        border-bottom: 2px solid ${Colors.borderActive};
+        color: #111;
       }
     `}</style>
   </div>

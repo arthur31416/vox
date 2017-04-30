@@ -14,7 +14,10 @@ const Metrics = {
 
 const Colors = {
   background: "#fafafa",
-  border: "#ccc"
+  border: "#ccc",
+  borderActive: "#555",
+  placeholder: "#999",
+  placeholderActive: "#222"
 };
 
 export { Metrics, Colors };
