@@ -1,8 +1,7 @@
 // flow
 
 import React from "react";
-
-const width = 768;
+import { Metrics } from "../themes";
 
 type Props = {
   currentRefinement: string,
@@ -22,7 +21,7 @@ const SearchBox = ({ currentRefinement, refine }: Props) => (
       .container-input {
         display: flex;
         flex: 1;
-        width: ${width}px;
+        width: ${Metrics.mobileWidth}px;
         max-width: 100%;
         min-height: 42px;
         background-color: red;

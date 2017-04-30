@@ -1,19 +1,20 @@
+// flow
+
 import { InstantSearch } from "react-instantsearch/dom";
 import {
   connectSearchBox,
   connectInfiniteHits
 } from "react-instantsearch/connectors";
 import SearchBox from "./SearchBox";
+import Container from "./Container";
 import Tracks from "./Tracks";
-
-const width = 768;
+import { Metrics } from "../themes";
 
 const ConnectedSearchBox = connectSearchBox(SearchBox);
-
 const ConnectedTracks = connectInfiniteHits(Tracks);
 
 const Search = () => (
-  <div className="container">
+  <Container>
     <InstantSearch
       appId="IB3O05S7C2"
       apiKey="862f872851208b8543e2627e96dc6585"
@@ -22,16 +23,7 @@ const Search = () => (
       <ConnectedSearchBox />
       <ConnectedTracks />
     </InstantSearch>
-
-    <style jsx>{`
-    .container {
-      display: flex;
-      flex: 1;
-      max-width: ${width}px;
-      margin: auto;
-    }
-  `}</style>
-  </div>
+  </Container>
 );
 
 export default Search;

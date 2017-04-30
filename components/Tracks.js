@@ -1,15 +1,21 @@
 // flow
 
 import React from "react";
-import type { TrackProps } from "../Types";
+import type { TrackProps } from "../types";
+import { Metrics } from "../themes";
 
 type TracksProps = {
   hits: Array<TrackProps>
 };
 
 const SingleTrack = ({ hit }) => (
-  <div>
+  <div className="container">
     {hit.author} - {hit.title} - {hit.language}
+    <style jsx>{`
+      .container {
+        padding: ${Metrics.doublePadding}px 0px; 
+      }
+    `}</style>
   </div>
 );
 
