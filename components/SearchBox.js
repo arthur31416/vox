@@ -1,8 +1,15 @@
+// flow
+
 import React from "react";
 
 const width = 768;
 
-const SearchBox = ({ currentRefinement, refine }) => (
+type Props = {
+  currentRefinement: string,
+  refine: (value: string) => void
+};
+
+const SearchBox = ({ currentRefinement, refine }: Props) => (
   <div className="container-input">
     <input
       type="text"

@@ -5,8 +5,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "precommit": "lint-staged",
-    "prettier": "prettier --write"
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "global": "^4.3.2",
@@ -22,7 +21,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "prettier": "^1.2.2"
+    "husky": "^0.13.2",
+    "flow-bin": "^0.45.0",
+    "prettier": "^1.2.2",
+    "lint-staged": "^3.4.0"
   },
   "lint-staged": {
     "*.js": [

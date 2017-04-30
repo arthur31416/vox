@@ -4,13 +4,13 @@ import {
   connectInfiniteHits
 } from "react-instantsearch/connectors";
 import SearchBox from "./SearchBox";
+import Tracks from "./Tracks";
 
 const width = 768;
 
 const ConnectedSearchBox = connectSearchBox(SearchBox);
 
-const ConnectedHits = connectInfiniteHits(Hits);
-connectInfiniteHits;
+const ConnectedTracks = connectInfiniteHits(Tracks);
 
 const Search = () => (
   <div className="container">
@@ -20,7 +20,7 @@ const Search = () => (
       indexName="book"
     >
       <ConnectedSearchBox />
-      <ConnectedHits />
+      <ConnectedTracks />
     </InstantSearch>
 
     <style jsx>{`
