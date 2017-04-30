@@ -1,10 +1,10 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export default ({ pathname }) => (
-  <div className='container'>
+  <div className="container">
     <div>
       Logo
-    </div>    
+    </div>
 
     <div>
       <div>
@@ -15,17 +15,17 @@ export default ({ pathname }) => (
       </div>
     </div>
 
-    <div className='navigation'>
-      <Link prefetch href='/'>
-        <a className={pathname === '/' && 'is-active'}>Search</a>
+    <div className="navigation">
+      <Link prefetch href="/">
+        <a className={pathname === "/" && "is-active"}>Search</a>
       </Link>
 
-      <Link prefetch href='/about'>
-        <a className={pathname === '/about' && 'is-active'}>Your audiobooks</a>
+      <Link prefetch href="/about">
+        <a className={pathname === "/about" && "is-active"}>Your audiobooks</a>
       </Link>
     </div>
 
-    <div className='row auth'>
+    <div className="row auth">
       <div>
         Log in
       </div>
@@ -67,4 +67,4 @@ export default ({ pathname }) => (
       }
   `}</style>
   </div>
-)
+);

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const width = 768;
 
 const SearchBox = ({ currentRefinement, refine }) => (
-  <div className='container-input'>
+  <div className="container-input">
     <input
       type="text"
-      placeholder='Search a book'
+      placeholder="Search a book"
       value={currentRefinement}
       onChange={e => refine(e.target.value)}
     />
@@ -32,6 +32,6 @@ const SearchBox = ({ currentRefinement, refine }) => (
       }
     `}</style>
   </div>
-)
+);
 
-export default SearchBox
+export default SearchBox;

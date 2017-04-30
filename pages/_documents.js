@@ -1,7 +1,7 @@
-import Document, { Head, Main, NextScript } from 'next/document'
-import flush from 'styled-jsx/server'
+import Document, { Head, Main, NextScript } from "next/document";
+import flush from "styled-jsx/server";
 
-import HeadNext from 'next/head'
+import HeadNext from "next/head";
 const HeadWithViewport = () => (
   <div>
     <HeadNext>
@@ -10,25 +10,25 @@ const HeadWithViewport = () => (
     </HeadNext>
     <p>Hello world!</p>
   </div>
-)
+);
 
 export default class MyDocument extends Document {
-  static getInitialProps ({ renderPage }) {
-    const {html, head} = renderPage()
-    return { html, head }
+  static getInitialProps({ renderPage }) {
+    const { html, head } = renderPage();
+    return { html, head };
   }
 
-  render () {
+  render() {
     return (
-     <html>
-       <HeadWithViewport />
+      <html>
+        <HeadWithViewport />
 
-       <body className="custom_class">
-         {this.props.customValue}
-         <Main />
-         <NextScript />
-       </body>
-     </html>
-    )
+        <body className="custom_class">
+          {this.props.customValue}
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    );
   }
 }
