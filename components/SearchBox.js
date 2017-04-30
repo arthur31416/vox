@@ -1,7 +1,7 @@
 // flow
 
 import React from "react";
-import { Metrics } from "../themes";
+import { Metrics, Colors } from "../themes";
 
 type Props = {
   currentRefinement: string,
@@ -25,16 +25,17 @@ const SearchBox = ({ currentRefinement, refine }: Props) => (
         max-width: 100%;
         min-height: 42px;
         background-color: red;
-        margin: 45px 0px;
+        margin-top: ${Metrics.doublePadding * 2}px;
+        margin-bottom: ${Metrics.basePadding}px;
       }
 
       input {
         display: flex;
         flex: 1;
         font-size: 18px;
-        padding: 15px 30px;
+        padding: ${Metrics.basePadding}px ${Metrics.doublePadding};
         border: none;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid ${Colors.border};
       }
     `}</style>
   </div>
