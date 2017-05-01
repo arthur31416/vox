@@ -3,6 +3,7 @@
 import React from "react";
 import HeaderDesktop from "./HeaderDesktop";
 import HeaderMobile from "./HeaderMobile";
+import Navbar from "./Navbar";
 import { Metrics } from "../themes";
 
 type Props = {
@@ -16,6 +17,7 @@ export default ({ pathname }: Props) => (
     </div>
 
     <div className="mobile column">
+      <Navbar title="home" />
       <HeaderMobile pathname={pathname} />
     </div>
 

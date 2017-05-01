@@ -1,20 +1,26 @@
+// flow
+
 import App from "../components/App";
-import Header from "../components/Header";
-import Search from "../components/Search";
-import NoSSR from "react-no-ssr";
-import withData from "../lib/withData";
+import Navbar from "../components/Navbar";
+import Tabbar from "../components/Tabbar";
+import EmptyStateHome from "../components/EmptyStateHome";
 
-const Loading = () => (
-  <div>
-    Loading...
-  </div>
-);
+const NB_BOOKS = 0;
 
-export default withData(props => (
+export default props => (
   <App>
-    <Header pathname={props.url.pathname} />
-    <NoSSR onSSR={<Loading />}>
-      <Search />
-    </NoSSR>
+    <Tabbar pathname={props.url.pathname} />
+    <Navbar title={`Current books (${NB_BOOKS})`} />
+
+    {NB_BOOKS === 0 &&
+      <EmptyStateHome
+        onSearch={() => {
+          console.log("Go to search!");
+        }}
+        onLogin={() => {
+          console.log("Go login");
+        }}
+        isLogged={false}
+      />}
   </App>
-));
+);

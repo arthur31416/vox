@@ -5,22 +5,38 @@ import Link from "next/link";
 import { Colors, Metrics } from "../themes";
 import IconSearch from "react-icons/lib/md/search";
 import IconPerson from "react-icons/lib/md/person";
+import IconHome from "react-icons/lib/md/playlist-play";
 
 type Props = {
   pathname: string
 };
 
-const HeaderMobile = ({ pathname }: Props) => (
+const Tabbar = ({ pathname }: Props) => (
   <div className="container">
     <Link prefetch href="/">
       <a className={pathname === "/" && "is-active"}>
-        <IconSearch />
+        <IconHome />
+        <span className="name">
+          Books
+        </span>
       </a>
     </Link>
 
-    <Link prefetch href="/about">
-      <a className={pathname === "/about" && "is-active"}>
+    <Link prefetch href="/search">
+      <a className={pathname === "/search" && "is-active"}>
+        <IconSearch />
+        <span className="name">
+          Search
+        </span>
+      </a>
+    </Link>
+
+    <Link prefetch href="/profile">
+      <a className={pathname === "/profile" && "is-active"}>
         <IconPerson />
+        <span className="name">
+          Profile
+        </span>
       </a>
     </Link>
 
@@ -38,6 +54,7 @@ const HeaderMobile = ({ pathname }: Props) => (
         justify-content: space-around;
         align-items: center;
         background-color: ${Colors.backgroundTabbar};
+        border-top: 4px solid ${Colors.brand};
       }
       a {
         display: flex;
@@ -47,7 +64,6 @@ const HeaderMobile = ({ pathname }: Props) => (
         align-items: center;
         justify-content: center;
         font-size: 26px;
-        margin-right: 25px;
         text-decoration: none;
         color: #aaa;
         font-weight: 300;
@@ -55,8 +71,12 @@ const HeaderMobile = ({ pathname }: Props) => (
       .is-active {
         color: #fff;
       }
+      .name {
+        font-size: 11px;
+        margin-top: -2px;
+      }
   `}</style>
   </div>
 );
 
-export default HeaderMobile;
+export default Tabbar;

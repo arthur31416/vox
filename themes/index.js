@@ -8,11 +8,12 @@ const Metrics = {
   doublePadding: unit * 4,
   // media queries
   mobileWidth: 768,
-  desktopWidth: 1200,
+  desktopWidth: 91200,
   // media
   avatarSmall: 64,
-  // tabbar
-  tabbarHeight: 54
+  // tabbar and navbar
+  tabbarHeight: 56,
+  navbarHeight: 50
 };
 
 const Colors = {
@@ -21,7 +22,9 @@ const Colors = {
   border: "#ccc",
   borderActive: "#555",
   placeholder: "#999",
-  placeholderActive: "#222"
+  placeholderActive: "#222",
+  brand: "#5e23dc",
+  backgroundNavbar: "#5e23dc"
 };
 
 export { Metrics, Colors };
