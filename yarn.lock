@@ -2994,9 +2994,9 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-apollo@apollographql/react-apollo:
+react-apollo@^1.0.0-rc.2:
   version "1.1.2"
-  resolved "https://codeload.github.com/apollographql/react-apollo/tar.gz/f6139148eca8c76b46bc107dc6011f2c5e8ca0d2"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-1.1.2.tgz#2f8a8d85306805feda242241e0a4d5864664cf4d"
   dependencies:
     apollo-client "^1.0.2"
     graphql-anywhere "^3.0.0"
