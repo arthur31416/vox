@@ -1,70 +1,42 @@
-import Link from "next/link";
+// flow
 
-export default ({ pathname }) => (
-  <div className="container">
-    <div>
-      Logo
+import React from "react";
+import HeaderDesktop from "./HeaderDesktop";
+import HeaderMobile from "./HeaderMobile";
+import { Metrics } from "../themes";
+
+type Props = {
+  pathname: string
+};
+
+export default ({ pathname }: Props) => (
+  <div className="column">
+    <div className="desktop column">
+      <HeaderDesktop pathname={pathname} />
     </div>
 
-    <div>
-      <div>
-        Daddy cool
-      </div>
-      <div>
-        Free audio books
-      </div>
-    </div>
-
-    <div className="navigation">
-      <Link prefetch href="/">
-        <a className={pathname === "/" && "is-active"}>Search</a>
-      </Link>
-
-      <Link prefetch href="/about">
-        <a className={pathname === "/about" && "is-active"}>Your audiobooks</a>
-      </Link>
-    </div>
-
-    <div className="row auth">
-      <div>
-        Log in
-      </div>
-
-      <div>
-        Sign up
-      </div>
+    <div className="mobile column">
+      <HeaderMobile pathname={pathname} />
     </div>
 
     <style jsx>{`
-      header {
-        margin-bottom: 25px;
-      }
-      a {
-        font-size: 26px;
-        margin-right: 25px;
-        text-decoration: none;
-        color: #ccc;
-      }
-      .is-active {
-        color: #111;
-      }
-      .row{
+      .column {
         display: flex;
-        flex-direction: row;
-      }
-      .container {
-        display: flex;
-        flex-direction: row;
         flex: 1;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
       }
-      .navigation {
-        flex: 1;
+
+      @media screen and (min-device-width: ${Metrics.desktopWidth}px) {
+        .mobile {
+          display: none;
+        }
       }
-      .auth {
-        align-self: flex-end;
-      }
-  `}</style>
+      
+      @media screen and (max-device-width: ${Metrics.desktopWidth - 1}px) {
+        .desktop {
+          display: none;
+        }
+      } 
+    `}</style>
   </div>
 );

@@ -21,10 +21,7 @@ const SearchBox = ({ currentRefinement, refine }: Props) => (
       .container-input {
         display: flex;
         flex: 1;
-        width: ${Metrics.mobileWidth}px;
-        max-width: 100%;
         min-height: 42px;
-        margin-top: ${Metrics.doublePadding * 2}px;
         margin-bottom: ${Metrics.basePadding}px;
       }
 

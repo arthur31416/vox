@@ -19,6 +19,18 @@ export default class MyDocument extends Document {
             content="initial-scale=1.0, width=device-width"
           />
           <style>{`
+            * {
+              font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            }
+            body {
+              padding: 0;
+              margin: 0;
+            }
+            .ais-InstantSearch__root {
+              display: flex;
+              flex: 1;
+              flex-direction: column;
+            }
             a:focus, input:focus {
               outline: none;
             }

@@ -12,11 +12,12 @@ const Container = ({ children, width = Metrics.mobileWidth }: Props) => (
   <div className="container" style={{ maxWidth: width }}>
     {children}
     <style jsx>{`
-        .container {
-            max-width: ${Metrics.mobileWidth}px;
-            display: flex;
-            margin: auto;
-        }
+      .container {
+         max-width: ${Metrics.mobileWidth}px;
+         display: flex;
+         margin: auto;
+         padding: ${Metrics.basePadding}px;
+      }
       ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
           color: ${Colors.placeholder};
       }
