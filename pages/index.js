@@ -12,15 +12,6 @@ export default props => (
     <Tabbar pathname={props.url.pathname} />
     <Navbar title={`Current books (${NB_BOOKS})`} />
 
-    {NB_BOOKS === 0 &&
-      <EmptyStateHome
-        onSearch={() => {
-          console.log("Go to search!");
-        }}
-        onLogin={() => {
-          console.log("Go login");
-        }}
-        isLogged={false}
-      />}
+    {NB_BOOKS === 0 && <EmptyStateHome isLogged={false} />}
   </App>
 );

@@ -13,18 +13,21 @@ const Metrics = {
   avatarSmall: 64,
   // tabbar and navbar
   tabbarHeight: 56,
-  navbarHeight: 50
+  navbarHeight: 50,
+  // button
+  borderRadius: 4
 };
 
 const Colors = {
-  background: "#fafafa",
+  background: "#f4f4f4",
   backgroundTabbar: "#222",
   border: "#ccc",
   borderActive: "#555",
   placeholder: "#999",
   placeholderActive: "#222",
   brand: "#5e23dc",
-  backgroundNavbar: "#5e23dc"
+  backgroundNavbar: "#5e23dc",
+  primary: "#1dd38f"
 };
 
 export { Metrics, Colors };

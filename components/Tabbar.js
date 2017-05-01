@@ -54,7 +54,7 @@ const Tabbar = ({ pathname }: Props) => (
         justify-content: space-around;
         align-items: center;
         background-color: ${Colors.backgroundTabbar};
-        border-top: 4px solid ${Colors.brand};
+        border-top: 1px solid #000; 
       }
       a {
         display: flex;
