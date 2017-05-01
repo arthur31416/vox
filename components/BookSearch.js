@@ -7,7 +7,6 @@ import {
 } from "react-instantsearch/connectors";
 import NoSSR from "react-no-ssr";
 import SearchBox from "./SearchBox";
-import Container from "./Container";
 import Tracks from "./Tracks";
 import { Metrics } from "../themes";
 
@@ -21,7 +20,7 @@ const ConnectedSearchBox = connectSearchBox(SearchBox);
 const ConnectedTracks = connectInfiniteHits(Tracks);
 
 const BookSearch = () => (
-  <Container>
+  <div className="container">
     <NoSSR onSSR={<Loading />}>
       <InstantSearch
         appId="IB3O05S7C2"
@@ -32,7 +31,15 @@ const BookSearch = () => (
         <ConnectedTracks />
       </InstantSearch>
     </NoSSR>
-  </Container>
+
+    <style jsx>{`
+      .container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+    `}</style>
+  </div>
 );
 
 export default BookSearch;

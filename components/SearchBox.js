@@ -20,7 +20,6 @@ const SearchBox = ({ currentRefinement, refine }: Props) => (
     <style jsx>{`
       .container-input {
         display: flex;
-        flex: 1;
         min-height: 42px;
         margin-bottom: ${Metrics.basePadding}px;
       }

@@ -22,6 +22,7 @@ const Colors = {
   background: "#f4f4f4",
   backgroundTabbar: "#222",
   border: "#ccc",
+  borderLight: "#eee",
   borderActive: "#555",
   placeholder: "#999",
   placeholderActive: "#222",

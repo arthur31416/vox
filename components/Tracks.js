@@ -3,7 +3,7 @@
 import React from "react";
 import type { TrackProps } from "../types";
 import Avatar from "./Avatar";
-import { Metrics } from "../themes";
+import { Metrics, Colors } from "../themes";
 
 type TracksProps = {
   hits: Array<TrackProps>
@@ -22,9 +22,11 @@ const SingleTrack = ({ hit }) => (
     </div>
     <style jsx>{`
       .container {
-        padding: ${Metrics.doublePadding}px 0px; 
+        padding: ${Metrics.doublePadding}px ${Metrics.basePadding}px; 
         display: flex;
         flex-direction: row;
+        background-color: #fff;
+        border-bottom: 1px solid ${Colors.borderLight};
       }
       .container-infos {
         display: flex;
