@@ -22,7 +22,8 @@ export default class MyDocument extends Document {
             * {
               font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             }
-            body {
+            html, body {
+              height: 100%;
               padding: 0;
               margin: 0;
             }

@@ -1,7 +1,7 @@
 import App from "../components/App";
 
 export default props => (
-  <App>
+  <App withTabbar={false}>
     <div>
       Login
     </div>
