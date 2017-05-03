@@ -5,10 +5,11 @@ import Link from "next/link";
 import { Metrics, Colors } from "../themes";
 
 type Props = {
-  isLogged: boolean
+  isLogged: boolean,
+  login: () => void
 };
 
-const EmptyStateHome = ({ isLogged }: Props) => (
+const EmptyStateHome = ({ isLogged, login }: Props) => (
   <div className="container">
     <div className="header">
       You have no books!
@@ -24,7 +25,8 @@ const EmptyStateHome = ({ isLogged }: Props) => (
 
     {!isLogged &&
       <div className="login">
-        <Link href="/login"><a>Already have an account?</a></Link>
+        <a href="#" onClick={login}>Already have an account?</a>
+        {/*<Link href="/login"><a>already have an account?</a></Link>*/}
       </div>}
 
     <style jsx>{`

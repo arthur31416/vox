@@ -11,13 +11,15 @@
     "global": "^4.3.2",
     "graphql": "^0.9.4",
     "next": "2.2.0",
+    "ramda": "^0.23.0",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
     "react-apollo": "^1.0.0-rc.2",
+    "react-dom": "^15.5.4",
     "react-icons": "^2.2.3",
     "react-instantsearch": "^3.3.1",
     "react-no-ssr": "^1.1.0",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.1"
   },
   "author": "",
   "license": "ISC",
