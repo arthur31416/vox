@@ -3,7 +3,8 @@
 import { Colors, Metrics } from "../themes";
 
 type Props = {
-  children: any
+  children: any,
+  hasTabbar: boolean
 };
 
 export default ({ children, hasTabbar = true }: Props) => (
