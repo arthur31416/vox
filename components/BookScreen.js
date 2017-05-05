@@ -2,6 +2,9 @@
 
 import React from "react";
 import { gql, graphql } from "react-apollo";
+import ProgressiveBackground from "./ProgressiveBackground";
+import { getThumbnail } from "../helpers";
+import { Colors, Metrics } from "../themes";
 
 type Props = {
   coverArt: string,
@@ -21,8 +24,12 @@ const BookScreen = ({ params, data }) => {
 
   return (
     <div className="container">
-      <div>{params.title}</div>
-      <img src={params.coverArtLarge} width={250} height={250} />
+      <ProgressiveBackground
+        src={params.coverArtLarge}
+        placeholder={getThumbnail()(params.coverArtLarge)}
+        className="cover"
+      />
+
       {!loading &&
         tracks.map((track, index) => (
           <div key={index}>
@@ -31,6 +38,16 @@ const BookScreen = ({ params, data }) => {
         ))}
       <style jsx>{`
         .container {
+          width: 100%;
+          margin: 0 auto;
+        }
+
+         .container > :global(.cover):first-child {
+          width: 100vw;
+          height: ${Metrics.coverHeight}px;
+          display: flex;
+          flex: 1;
+          background-color: ${Colors.charcoal};
         }
       `}</style>
     </div>

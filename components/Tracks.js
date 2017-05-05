@@ -5,21 +5,20 @@ import type { TrackProps } from "../types";
 import Avatar from "./Avatar";
 import Link from "next/link";
 import { Metrics, Colors } from "../themes";
+import { getThumbnail } from "../helpers";
 
 type TracksProps = {
   hits: Array<TrackProps>
 };
 
 const SingleTrack = ({ hit }) => {
-  const { id, title, coverArt, coverArtLarge, author, language } = hit;
+  const { id, title, coverArtLarge, author, language } = hit;
 
   return (
-    <Link
-      href={{ pathname: "book", query: { id, title, coverArt, coverArtLarge } }}
-    >
+    <Link href={{ pathname: "book", query: { id, title, coverArtLarge } }}>
       <div className="container">
         <div>
-          <Avatar url={hit.coverArt} />
+          <Avatar url={getThumbnail()(hit.coverArtLarge)} />
         </div>
 
         <div className="container-infos">

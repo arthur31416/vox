@@ -15,7 +15,9 @@ const Metrics = {
   tabbarHeight: 56,
   navbarHeight: 50,
   // button
-  borderRadius: 4
+  borderRadius: 4,
+  // book
+  coverHeight: 340
 };
 
 const Colors = {
@@ -28,7 +30,9 @@ const Colors = {
   placeholderActive: "#222",
   brand: "#5e23dc",
   backgroundNavbar: "#5e23dc",
-  primary: "#1dd38f"
+  primary: "#1dd38f",
+  coal: "#222",
+  charcoal: "#555"
 };
 
 export { Metrics, Colors };
