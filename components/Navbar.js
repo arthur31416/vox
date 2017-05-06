@@ -32,7 +32,7 @@ const Navbar = ({ title, back, titleRight }: Props) => (
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-          padding: 0 ${Metrics.basePadding}px;
+          padding: 0 ${Metrics.doublePadding}px;
           height: ${Metrics.navbarHeight}px;
           background-color: ${Colors.backgroundNavbar};
           color: #fff;
@@ -40,7 +40,7 @@ const Navbar = ({ title, back, titleRight }: Props) => (
         }
 
         .container-title {
-          max-width: calc(100% - ${Metrics.navbarIconSize * 2}px - ${Metrics.doublePadding}px);
+          max-width: calc(100% - ${Metrics.navbarIconSize * 2}px - ${Metrics.doublePadding * 2}px);
           display: flex;
         }
 

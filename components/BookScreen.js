@@ -3,14 +3,52 @@
 import React from "react";
 import { gql, graphql } from "react-apollo";
 import ProgressiveBackground from "./ProgressiveBackground";
-import { getThumbnail } from "../helpers";
+import { getThumbnail, secondsToHms } from "../helpers";
 import { Colors, Metrics } from "../themes";
+import R from "ramda";
 
 type Props = {
   coverArt: string,
   coverArtLarge: string,
   title: string
 };
+
+type TrackProps = {
+  chapter: string,
+  reader: { id: number, name: string } | string,
+  section: number,
+  time: number,
+  url_mp3_ld: string,
+  url_mp3_hd: string
+};
+
+const renderTrack = (track: TrackProps) => (
+  <div key={track.section} className="container">
+    <div>
+      <span>{track.chapter} </span>
+      <a href={track["url_mp3_ld"]}>Link</a>
+    </div>
+
+    <div>
+      {secondsToHms(track.time)}
+    </div>
+
+    <style jsx>{`
+      .container {
+        background-color: #fff;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: ${Metrics.doublePadding}px;
+        border-bottom: 1px solid ${Colors.border};
+      }
+    `}</style>
+  </div>
+);
+
+const sortBySection = R.sortBy(R.prop("section"));
+const classNameCover = "cover";
 
 const BookScreen = ({ params, data }) => {
   const { Book, loading, error } = data;
@@ -27,22 +65,16 @@ const BookScreen = ({ params, data }) => {
       <ProgressiveBackground
         src={params.coverArtLarge}
         placeholder={getThumbnail()(params.coverArtLarge)}
-        className="cover"
+        className={classNameCover}
       />
-
-      {!loading &&
-        tracks.map((track, index) => (
-          <div key={index}>
-            <a href={track["url_mp3_ld"]}>Track {index + 1}</a>
-          </div>
-        ))}
+      {!loading && R.map(renderTrack, sortBySection(tracks))}
       <style jsx>{`
         .container {
           width: 100%;
           margin: 0 auto;
         }
 
-         .container > :global(.cover):first-child {
+         .container > :global(.${classNameCover}):first-child {
           width: 100vw;
           height: ${Metrics.coverHeight}px;
           display: flex;
