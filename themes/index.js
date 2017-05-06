@@ -17,7 +17,8 @@ const Metrics = {
   // button
   borderRadius: 4,
   // book
-  coverHeight: 340
+  coverHeight: 340, //
+  navbarIconSize: 24
 };
 
 const Colors = {

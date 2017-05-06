@@ -5,8 +5,11 @@ import withData from "../lib/withData";
 import Navbar from "../components/Navbar";
 import { path } from "ramda";
 import BookScreen from "../components/BookScreen";
+import { selectorBack, selectorQueryParams } from "../selectors";
+import IconStarOutline from "react-icons/lib/md/star-outline";
+import IconStar from "react-icons/lib/md/star";
+import { Metrics } from "../themes";
 
-const getQueryParams = path(["url", "query"]);
 const getTitle = path(["url", "query", "title"]);
 
 type Props = {
@@ -23,7 +26,11 @@ type Props = {
 
 export default withData(props => (
   <App hasTabbar={false}>
-    <Navbar title={getTitle(props)} />
-    <BookScreen params={getQueryParams(props)} />
+    <Navbar
+      back={selectorBack(props)}
+      title={getTitle(props)}
+      titleRight={<IconStarOutline size={Metrics.navbarIconSize} />}
+    />
+    <BookScreen params={selectorQueryParams(props)} />
   </App>
 ));

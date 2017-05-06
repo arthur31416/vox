@@ -1,5 +1,7 @@
 import { path } from "ramda";
 
-const getUserId = path(["initialState", "login", "user", "id"]);
+const selectorUserId = path(["initialState", "login", "user", "id"]);
+const selectorBack = path(["url", "back"]);
+const selectorQueryParams = path(["url", "query"]);
 
-export { getUserId };
+export { selectorUserId, selectorBack, selectorQueryParams };

@@ -8,7 +8,7 @@ import withData from "../lib/withData";
 import { bindActionCreators } from "redux";
 import { initStore, startClock, addCount, serverRenderClock } from "../store";
 import withRedux from "next-redux-wrapper";
-import { getUserId } from "../selectors";
+import { selectorUserId } from "../selectors";
 
 const NB_BOOKS = 0;
 
@@ -24,7 +24,7 @@ const Index = props => (
     {NB_BOOKS === 0 &&
       <EmptyStateHome
         login={login(props.dispatch)}
-        isLogged={!!getUserId(props)}
+        isLogged={!!selectorUserId(props)}
       />}
 
     <div>
