@@ -2,7 +2,7 @@
 {
     "editor.fontFamily": "Fira Code",
     "editor.fontSize": 12,
-    "editor.fontWeight": 300,
+    "editor.fontWeight": '300',
     "editor.fontLigatures": true,
     "editor.formatOnSave": true,
     "javascript.validate.enable": false,

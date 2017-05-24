@@ -5,7 +5,8 @@ import React, { Component } from "react";
 type Props = {
   src: string,
   placeholder: string,
-  className: string
+  className: string,
+  onClick: () => void
 };
 
 export default class ProgressiveBackground extends Component {
@@ -22,13 +23,14 @@ export default class ProgressiveBackground extends Component {
   };
 
   render() {
-    const { src, placeholder, className } = this.props;
+    const { src, placeholder, className, onClick } = this.props;
     const { hasLoaded } = this.state;
 
     return (
       <div
         className={`${className} container-ld`}
         style={{ backgroundImage: `url(${placeholder})` }}
+        onClick={onClick}
       >
         <div
           className={`${className} container-hd`}

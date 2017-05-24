@@ -3,14 +3,20 @@
 import React from "react";
 import { gql, graphql } from "react-apollo";
 import ProgressiveBackground from "./ProgressiveBackground";
+import ListSounds from "./ListSounds";
 import { getThumbnail, secondsToHms } from "../helpers";
 import { Colors, Metrics } from "../themes";
 import R from "ramda";
+import { compose, pure, withState } from "recompose";
 
 type Props = {
   coverArt: string,
   coverArtLarge: string,
-  title: string
+  title: string,
+  isPlaying: boolean,
+  togglePlaying: () => void,
+  sectionPlaying: ?number,
+  updateSectionPlaying: (sectionPlaying: ?number) => void
 };
 
 type TrackProps = {
@@ -50,7 +56,14 @@ const renderTrack = (track: TrackProps) => (
 const sortBySection = R.sortBy(R.prop("section"));
 const classNameCover = "cover";
 
-const BookScreen = ({ params, data }) => {
+const BookScreen = ({
+  params,
+  data,
+  isPlaying,
+  togglePlaying,
+  sectionPlaying,
+  updateSectionPlaying
+}) => {
   const { Book, loading, error } = data;
 
   if (!loading && error) {
@@ -66,8 +79,19 @@ const BookScreen = ({ params, data }) => {
         src={params.coverArtLarge}
         placeholder={getThumbnail()(params.coverArtLarge)}
         className={classNameCover}
+        onClick={() => togglePlaying(!isPlaying)}
       />
+      {/* TODO: add click listener to track sections using updateSectionPlaying */}
       {!loading && R.map(renderTrack, sortBySection(tracks))}
+
+      <ListSounds
+        tracks={tracks}
+        isPlaying={isPlaying}
+        sectionPlaying={sectionPlaying}
+      />
+
+      {isPlaying && <div className="devIndicator" />}
+
       <style jsx>{`
         .container {
           width: 100%;
@@ -80,6 +104,16 @@ const BookScreen = ({ params, data }) => {
           display: flex;
           flex: 1;
           background-color: ${Colors.charcoal};
+        }
+
+        .devIndicator {
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          background-color: pink;
+          border-radius: 50%;
         }
       `}</style>
     </div>
@@ -98,10 +132,15 @@ const BookScreenQuery = gql`
   }
 `;
 
-const BookScreenWithData = graphql(BookScreenQuery, {
-  options: ({ route }) => ({
-    variables: { id: "cj1cn698dyahm0109styakdr3" }
-  })
-})(BookScreen);
+const enhance = compose(
+  withState("isPlaying", "togglePlaying", false),
+  withState("sectionPlaying", "updateSectionPlaying", 1),
+  graphql(BookScreenQuery, {
+    options: route => ({
+      variables: { id: route.params.id }
+    })
+  }),
+  pure
+);
 
-export default BookScreenWithData;
+export default enhance(BookScreen);
