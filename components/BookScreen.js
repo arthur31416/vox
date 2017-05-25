@@ -7,7 +7,7 @@ import ListSounds from "./ListSounds";
 import { getThumbnail, secondsToHms } from "../helpers";
 import { Colors, Metrics } from "../themes";
 import R from "ramda";
-import { compose, pure, withState } from "recompose";
+import { compose, pure, withState, withHandlers, branch } from "recompose";
 
 type Props = {
   coverArt: string,
@@ -16,7 +16,8 @@ type Props = {
   isPlaying: boolean,
   togglePlaying: () => void,
   sectionPlaying: ?number,
-  updateSectionPlaying: (sectionPlaying: ?number) => void
+  updateSectionPlaying: (sectionPlaying: ?number) => void,
+  onClickTrack: (section: number) => void
 };
 
 type TrackProps = {
@@ -28,8 +29,12 @@ type TrackProps = {
   url_mp3_hd: string
 };
 
-const renderTrack = (track: TrackProps) => (
-  <div key={track.section} className="container">
+type SingleTrackProps = {
+  track: TrackProps,
+  onClickTrack: (section: number) => void
+};
+const SingleTrack = pure(({ track, onClickTrack }: SingleTrackProps) => (
+  <div className="container" onClick={() => onClickTrack(track.section)}>
     <div>
       <span>{track.chapter} </span>
       <a href={track["url_mp3_ld"]}>Link</a>
@@ -48,10 +53,16 @@ const renderTrack = (track: TrackProps) => (
         justify-content: space-between;
         padding: ${Metrics.doublePadding}px;
         border-bottom: 1px solid ${Colors.border};
+        cursor: pointer;
+        transition: background-color ease-in-out 200ms;
+      }
+
+      .container:hover {
+        background-color: #f3f3f3;
       }
     `}</style>
   </div>
-);
+));
 
 const sortBySection = R.sortBy(R.prop("section"));
 const classNameCover = "cover";
@@ -62,16 +73,14 @@ const BookScreen = ({
   isPlaying,
   togglePlaying,
   sectionPlaying,
-  updateSectionPlaying
+  updateSectionPlaying,
+  onClickTrack
 }) => {
-  const { Book, loading, error } = data;
-
-  if (!loading && error) {
-    return <div>There is an error. Please retry.</div>;
-  }
+  const { Book, loading } = data;
 
   // TODO: have a better loading state
   const { reader, time, size, tracks } = Book || {};
+  const sortedTracks = loading ? [] : sortBySection(tracks);
 
   return (
     <div className="container">
@@ -82,7 +91,13 @@ const BookScreen = ({
         onClick={() => togglePlaying(!isPlaying)}
       />
       {/* TODO: add click listener to track sections using updateSectionPlaying */}
-      {!loading && R.map(renderTrack, sortBySection(tracks))}
+      {sortedTracks.map(track => (
+        <SingleTrack
+          key={track.section}
+          track={track}
+          onClickTrack={onClickTrack}
+        />
+      ))}
 
       <ListSounds
         tracks={tracks}
@@ -104,7 +119,13 @@ const BookScreen = ({
           display: flex;
           flex: 1;
           background-color: ${Colors.charcoal};
+          cursor: pointer;
+          transition: width ease-in-out 200ms;
         }
+
+         .container > :global(.${classNameCover}):first-child:hover {
+           width: 100.5%;
+         }
 
         .devIndicator {
           width: 30px;
@@ -132,6 +153,23 @@ const BookScreenQuery = gql`
   }
 `;
 
+const onClickTrack = ({
+  togglePlaying,
+  updateSectionPlaying,
+  sectionPlaying,
+  isPlaying
+}) => (section: number) => {
+  if (sectionPlaying === section) {
+    togglePlaying(!isPlaying);
+  } else {
+    updateSectionPlaying(section);
+    togglePlaying(true);
+  }
+};
+
+const errorHoc = () => () => <div>There is an error. Please retry.</div>;
+const hasError = ({ loading, error }) => !loading && error;
+
 const enhance = compose(
   withState("isPlaying", "togglePlaying", false),
   withState("sectionPlaying", "updateSectionPlaying", 1),
@@ -140,6 +178,8 @@ const enhance = compose(
       variables: { id: route.params.id }
     })
   }),
+  branch(hasError, errorHoc),
+  withHandlers({ onClickTrack }),
   pure
 );
 
