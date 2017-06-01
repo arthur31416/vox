@@ -3,13 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import { Metrics, Colors } from "../themes";
+import withData from "../lib/withData";
 
 type Props = {
   isLogged: boolean,
-  login: () => void
+  login: () => void,
+  addCount: () => void
 };
 
-const EmptyStateHome = ({ isLogged, login }: Props) => (
+const EmptyStateHome = ({ isLogged, login, addCount }: Props) => (
   <div className="container">
     <div className="header">
       You have no books!
@@ -28,6 +30,10 @@ const EmptyStateHome = ({ isLogged, login }: Props) => (
         <a href="#" onClick={login}>Already have an account?</a>
         {/*<Link href="/login"><a>already have an account?</a></Link>*/}
       </div>}
+
+    <div>
+      <button onClick={addCount}>One more time</button>
+    </div>
 
     <style jsx>{`
         .container {

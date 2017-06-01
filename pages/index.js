@@ -9,6 +9,7 @@ import { bindActionCreators } from "redux";
 import { initStore, startClock, addCount, serverRenderClock } from "../store";
 import withRedux from "next-redux-wrapper";
 import { selectorUserId } from "../selectors";
+import { compose, lifecycle } from "recompose";
 
 const NB_BOOKS = 0;
 
@@ -25,19 +26,20 @@ const Index = props => (
       <EmptyStateHome
         login={login(props.dispatch)}
         isLogged={!!selectorUserId(props)}
+        addCount={props.addCount}
       />}
 
     <div>
-      You've come here {props.count} time{props.count > 1 ? "s" : ""}
+      You've clicked {props.count} time{props.count > 1 ? "s" : ""}
     </div>
   </App>
 );
 
-Index.getInitialProps = ({ store, isServer }) => {
-  store.dispatch(serverRenderClock(isServer));
-  store.dispatch(addCount());
-
-  return { isServer };
+Index.getInitialProps = ({ store, isServer, ...da }) => {
+  // store.dispatch(serverRenderClock(isServer));
+  // store.dispatch(addCount());
+  console.warn("------", store.getState());
+  return { isServer, yolo: "c'est yolo" };
 };
 
 const mapStateToProps = ({ count }) => ({
@@ -47,10 +49,13 @@ const mapStateToProps = ({ count }) => ({
 const mapDispatchToProps = dispatch => {
   return {
     addCount: bindActionCreators(addCount, dispatch),
-    startClock: bindActionCreators(startClock, dispatch)
+    startClock: bindActionCreators(startClock, dispatch),
+    dispatch
   };
 };
 
 export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
   withData(Index)
 );
+
+// export default withRedux(initStore)(withData(Index));

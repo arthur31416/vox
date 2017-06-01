@@ -20,8 +20,9 @@ type Props = {
 const ListSounds = ({ tracks, isPlaying, sectionPlaying }: Props) => (
   <div style={{ height: 0, visible: "none" }}>
     {!!tracks &&
-      tracks.map(track => (
+      tracks.map((track, index) => (
         <Sound
+          key={index}
           url={R.path(["url_mp3_ld"], track)}
           playStatus={
             isPlaying && track.section === sectionPlaying ? "PLAYING" : "PAUSED"
