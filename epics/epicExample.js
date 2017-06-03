@@ -1,17 +1,15 @@
 // flow
 
 import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import "rxjs/add/operator/delay";
 import "rxjs/add/operator/filter";
+import "rxjs/add/operator/mapTo";
+import { actionTypes } from "../store";
 
-console.log("00000000000");
-export default (action$: Observable<Object>) =>
+const observable = (action$: Observable<Object>) =>
   action$
-    // .filter(action => action.type === "ADD")
-    .map(n => `Observable: ${n}`)
-    .action$.map(x => {
-      console.log("x-----");
-      debugger;
-      return x;
-    });
-// .subscribe(x => console.log("-----------", x));
+    .filter(action => action.type === actionTypes.ADD)
+    .delay(1000)
+    .mapTo({ type: actionTypes.PONG });
+
+export default observable;
