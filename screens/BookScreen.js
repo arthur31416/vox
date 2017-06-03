@@ -2,8 +2,8 @@
 
 import React from "react";
 import { gql, graphql } from "react-apollo";
-import ProgressiveBackground from "./ProgressiveBackground";
-import ListSounds from "./ListSounds";
+import ProgressiveBackground from "../components/ProgressiveBackground";
+import ListSounds from "../components/ListSounds";
 import { getThumbnail, secondsToHms } from "../helpers";
 import { Colors, Metrics } from "../themes";
 import R from "ramda";
@@ -17,7 +17,8 @@ type Props = {
   togglePlaying: () => void,
   sectionPlaying: ?number,
   updateSectionPlaying: (sectionPlaying: ?number) => void,
-  onClickTrack: (section: number) => void
+  onClickTrack: (section: number) => void,
+  playBook: (bookId: string, section: number, time?: number) => void
 };
 
 type TrackProps = {
@@ -157,13 +158,15 @@ const onClickTrack = ({
   togglePlaying,
   updateSectionPlaying,
   sectionPlaying,
-  isPlaying
+  isPlaying,
+  playBook
 }) => (section: number) => {
   if (sectionPlaying === section) {
     togglePlaying(!isPlaying);
   } else {
     updateSectionPlaying(section);
     togglePlaying(true);
+    playBook("book_id", 3, 666);
   }
 };
 

@@ -1,9 +1,8 @@
 import { combineReducers } from "redux";
-import loginReducer from "./loginReducer";
+import readingReducer from "./readingReducer";
+import countReducer from "./countReducer";
 
-export default function getReducer(client) {
-  return combineReducers({
-    apollo: client.reducer(),
-    login: loginReducer
-  });
-}
+export default combineReducers({
+  reading: readingReducer,
+  count: countReducer
+});

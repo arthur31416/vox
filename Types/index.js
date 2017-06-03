@@ -11,4 +11,15 @@ type TrackProps = {
   yearDeath: Date
 };
 
-export type { TrackProps };
+type ReadingType = {
+  bookId: string,
+  section: ?number,
+  stoppedAt: ?number
+};
+
+type ActionType = {
+  type: string,
+  payload: Object
+};
+
+export type { TrackProps, ReadingType, ActionType };

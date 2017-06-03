@@ -6,7 +6,8 @@ import Tabbar from "../components/Tabbar";
 import EmptyStateHome from "../components/EmptyStateHome";
 import withData from "../lib/withData";
 import { bindActionCreators } from "redux";
-import { initStore, addCount, serverRenderClock } from "../store";
+import { initStore } from "../store";
+import { addCount } from "../actions";
 import withRedux from "next-redux-wrapper";
 import { selectorUserId } from "../selectors";
 import { compose, lifecycle } from "recompose";
@@ -35,12 +36,12 @@ const Index = props => (
   </App>
 );
 
-Index.getInitialProps = ({ store, isServer, ...da }) => {
+Index.getInitialProps = ({ store, isServer }) => {
   return { isServer };
 };
 
 const mapStateToProps = ({ count }) => ({
-  count
+  count: count.count
 });
 
 const mapDispatchToProps = dispatch => {

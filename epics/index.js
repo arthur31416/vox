@@ -1,5 +1,5 @@
 // @flow
 import { combineEpics } from "redux-observable";
-import epicExample from "./epicExample";
+import epicCount from "./epicCount";
 
-export default combineEpics(epicExample);
+export default combineEpics(epicCount);

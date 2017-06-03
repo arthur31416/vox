@@ -4,12 +4,12 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/delay";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/mapTo";
-import { actionTypes } from "../store";
+import { actionTypes } from "../actions";
 
-const observable = (action$: Observable<Object>) =>
+const epic = (action$: Observable<Object>) =>
   action$
     .filter(action => action.type === actionTypes.ADD)
     .delay(1000)
     .mapTo({ type: actionTypes.PONG });
 
-export default observable;
+export default epic;
