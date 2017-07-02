@@ -4,19 +4,40 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "global": "^4.3.2",
     "graphql": "^0.9.4",
-    "next": "latest",
+    "next": "2.2.0",
+    "next-redux-wrapper": "^1.1.2",
+    "ramda": "^0.23.0",
     "react": "^15.5.4",
-    "react-apollo": "apollographql/react-apollo",
+    "react-apollo": "^1.0.0-rc.2",
     "react-dom": "^15.5.4",
+    "react-icons": "^2.2.3",
     "react-instantsearch": "^3.3.1",
     "react-no-ssr": "^1.1.0",
-    "redux": "^3.6.0"
+    "react-redux": "^5.0.4",
+    "react-sound": "^0.6.1",
+    "recompose": "^0.23.4",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.1",
+    "redux-observable": "^0.14.1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "flow-bin": "^0.45.0",
+    "husky": "^0.13.2",
+    "lint-staged": "^3.4.0",
+    "prettier": "^1.2.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }

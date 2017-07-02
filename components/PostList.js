@@ -1,15 +1,18 @@
-import { gql, graphql } from 'react-apollo'
-import PostUpvoter from './PostUpvoter'
+import { gql, graphql } from "react-apollo";
+import PostUpvoter from "./PostUpvoter";
 
-const POSTS_PER_PAGE = 10
+const POSTS_PER_PAGE = 10;
 
-function PostList ({ data: { allPosts, loading, _allPostsMeta }, loadMorePosts }) {
+function PostList({
+  data: { allPosts, loading, _allPostsMeta },
+  loadMorePosts
+}) {
   if (allPosts && allPosts.length) {
-    const areMorePosts = allPosts.length < _allPostsMeta.count
+    const areMorePosts = allPosts.length < _allPostsMeta.count;
     return (
       <section>
         <ul>
-          {allPosts.map((post, index) =>
+          {allPosts.map((post, index) => (
             <li key={post.id}>
               <div>
                 <span>{index + 1}. </span>
@@ -17,9 +20,13 @@ function PostList ({ data: { allPosts, loading, _allPostsMeta }, loadMorePosts }
                 <PostUpvoter id={post.id} votes={post.votes} />
               </div>
             </li>
-          )}
+          ))}
         </ul>
-        {areMorePosts ? <button onClick={() => loadMorePosts()}> {loading ? 'Loading...' : 'Show More'} </button> : ''}
+        {areMorePosts
+          ? <button onClick={() => loadMorePosts()}>
+              {" "}{loading ? "Loading..." : "Show More"}{" "}
+            </button>
+          : ""}
         <style jsx>{`
           section {
             padding-bottom: 20px;
@@ -59,9 +66,9 @@ function PostList ({ data: { allPosts, loading, _allPostsMeta }, loadMorePosts }
           }
         `}</style>
       </section>
-    )
+    );
   }
-  return <div>Loading</div>
+  return <div>Loading</div>;
 }
 
 const allPosts = gql`
@@ -77,7 +84,7 @@ const allPosts = gql`
       count
     }
   }
-`
+`;
 
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (PostList)
@@ -97,14 +104,14 @@ export default graphql(allPosts, {
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
           if (!fetchMoreResult) {
-            return previousResult
+            return previousResult;
           }
           return Object.assign({}, previousResult, {
             // Append the new posts results to the old one
             allPosts: [...previousResult.allPosts, ...fetchMoreResult.allPosts]
-          })
+          });
         }
-      })
+      });
     }
   })
-})(PostList)
+})(PostList);

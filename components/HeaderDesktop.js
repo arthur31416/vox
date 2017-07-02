@@ -1,10 +1,18 @@
-import Link from 'next/link'
+// flow
 
-export default ({ pathname }) => (
-  <div className='container'>
+import React from "react";
+import Link from "next/link";
+import { Metrics } from "../themes";
+
+type Props = {
+  pathname: string
+};
+
+const HeaderDesktop = ({ pathname }: Props) => (
+  <div className="container">
     <div>
       Logo
-    </div>    
+    </div>
 
     <div>
       <div>
@@ -15,17 +23,17 @@ export default ({ pathname }) => (
       </div>
     </div>
 
-    <div className='navigation'>
-      <Link prefetch href='/'>
-        <a className={pathname === '/' && 'is-active'}>Search</a>
+    <div className="navigation">
+      <Link prefetch href="/">
+        <a className={pathname === "/" && "is-active"}>Search</a>
       </Link>
 
-      <Link prefetch href='/about'>
-        <a className={pathname === '/about' && 'is-active'}>Your audiobooks</a>
+      <Link prefetch href="/about">
+        <a className={pathname === "/about" && "is-active"}>Your audiobooks</a>
       </Link>
     </div>
 
-    <div className='row auth'>
+    <div className="row auth">
       <div>
         Log in
       </div>
@@ -36,9 +44,6 @@ export default ({ pathname }) => (
     </div>
 
     <style jsx>{`
-      header {
-        margin-bottom: 25px;
-      }
       a {
         font-size: 26px;
         margin-right: 25px;
@@ -58,6 +63,7 @@ export default ({ pathname }) => (
         flex: 1;
         justify-content: space-between;
         align-items: center;
+        margin-top: ${Metrics.doublePadding * 2}px;
       }
       .navigation {
         flex: 1;
@@ -67,4 +73,6 @@ export default ({ pathname }) => (
       }
   `}</style>
   </div>
-)
+);
+
+export default HeaderDesktop;

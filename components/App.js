@@ -1,37 +1,30 @@
-export default ({ children }) => (
-  <main>
+// flow
+
+import { Colors, Metrics } from "../themes";
+
+type Props = {
+  children: any,
+  hasTabbar: boolean
+};
+
+export default ({ children, hasTabbar = true }: Props) => (
+  <main
+    style={{
+      minHeight: hasTabbar ? `calc(100% - ${Metrics.tabbarHeight}px)` : "100%"
+    }}
+  >
     {children}
     <style jsx global>{`
-      * {
-        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      body > div:first-child, #__next, #__next > div {
+        height: 100%;
       }
-      body {
-        margin: 0;
-        padding: 25px 50px;
-      }
-      p {
-        font-size: 14px;
-        line-height: 24px;
-      }
-      article {
-        margin: 0 auto;
-        max-width: 650px;
-      }
-      button {
-        align-items: center;
-        background-color: #22BAD9;
-        border: 0;
-        color: white;
+      main {
         display: flex;
-        padding: 5px 7px;
-      }
-      button:active {
-        background-color: #1B9DB7;
-        transition: background-color .3s
-      }
-      button:focus {
-        outline: none;
+        flex-direction: column;
+        flex: 1;
+        min-height: calc(100% - ${Metrics.tabbarHeight}px); 
+        background-color: ${Colors.background};
       }
     `}</style>
   </main>
-)
+);
